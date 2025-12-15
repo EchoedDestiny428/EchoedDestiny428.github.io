@@ -8,7 +8,8 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #000000;
+  background: #000000 !important;
+  background-color: #000000 !important;
 }
 
 /* Background Logo */
@@ -139,6 +140,18 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Force black background on body and html */
+html,
+body {
+  background: #000000 !important;
+  margin: 0;
+  padding: 0;
+}
+
+body.home-page {
+  background: #000000 !important;
+}
+
 /* Override default Jekyll theme styles for hero page */
 body.home-page {
   margin: 0;
@@ -148,6 +161,16 @@ body.home-page {
 body.home-page .wrapper {
   max-width: 100%;
   padding: 0;
+  background: #000000 !important;
+  background-color: #000000 !important;
+}
+
+/* Force black on wrapper and page elements */
+body.home-page .page-content,
+body.home-page .main-content,
+body.home-page main .wrapper {
+  background: #000000 !important;
+  background-color: #000000 !important;
 }
 
 /* Hide header and all header-related elements */

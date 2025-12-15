@@ -23,7 +23,7 @@ layout: default
   <!-- Hero Content -->
   <div class="hero-content">
     <h1 class="hero-title">EchoedDestiny428</h1>
-    <p class="hero-subtitle">Creative Developer & Designer</p>
+    <p class="hero-subtitle">Computer Science Student</p>
     <p class="hero-description">
       Welcome to my portfolio. Explore my work and discover what I create.
     </p>
@@ -36,8 +36,22 @@ layout: default
   // Add home-page class to body for styling overrides
   document.body.classList.add('home-page');
   
+  // Force black background on body and html
+  document.body.style.backgroundColor = '#000000';
+  document.documentElement.style.backgroundColor = '#000000';
+  
   // Hide header elements (fallback if CSS doesn't work)
   document.addEventListener('DOMContentLoaded', function() {
+    // Force black backgrounds
+    document.body.style.backgroundColor = '#000000';
+    document.documentElement.style.backgroundColor = '#000000';
+    
+    // Apply to wrapper elements
+    const wrappers = document.querySelectorAll('.wrapper, .page-content, .main-content, main');
+    wrappers.forEach(el => {
+      el.style.backgroundColor = '#000000';
+    });
+    
     const headerSelectors = [
       '.site-header',
       'header',
