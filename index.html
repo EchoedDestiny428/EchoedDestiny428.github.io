@@ -2,18 +2,39 @@
 layout: default
 ---
 
-<div class="home">
-  <h1 class="page-heading">Welcome to My Portfolio</h1>
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<div class="hero-container">
+  <!-- Background Logo -->
+  <!-- TODO: Replace the placeholder URL with your logo -->
+  <!-- Option 1: Use local image - Put your logo in assets/images/logo.png and use: /assets/images/logo.png -->
+  <!-- Option 2: Use external URL - Replace the src below with your image URL -->
+  <img src="https://via.placeholder.com/600x600/ffffff/667eea?text=LOGO" 
+       alt="Logo" 
+       class="hero-background-logo" 
+       id="logo-image">
   
-  <p>This is your portfolio site powered by Jekyll.</p>
+  <!-- Animated Background -->
+  <div class="animated-background"></div>
   
-  <h2>About</h2>
-  <p>Add your about information here.</p>
+  <!-- Floating Particles -->
+  <div class="particles"></div>
   
-  <h2>Projects</h2>
-  <p>Add your projects here.</p>
-  
-  <h2>Contact</h2>
-  <p>Add your contact information here.</p>
+  <!-- Hero Content -->
+  <div class="hero-content">
+    <h1 class="hero-title">EchoedDestiny428</h1>
+    <p class="hero-subtitle">Creative Developer & Designer</p>
+    <p class="hero-description">
+      Welcome to my portfolio. Explore my work and discover what I create.
+    </p>
+  </div>
 </div>
+
+<script src="/assets/js/particles.js"></script>
+
+<script>
+  // Add home-page class to body for styling overrides
+  document.body.classList.add('home-page');
+</script>
+
 
