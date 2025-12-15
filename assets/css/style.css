@@ -235,13 +235,28 @@ body.home-page .wrapper {
   padding: 0;
 }
 
+/* Hide header and all header-related elements */
 body.home-page .site-header,
-body.home-page .site-footer {
-  display: none;
+body.home-page header,
+body.home-page .site-footer,
+body.home-page footer,
+body.home-page .site-title,
+body.home-page .site-nav,
+body.home-page .page-link,
+body.home-page .trigger {
+  display: none !important;
+  visibility: hidden !important;
 }
 
 body.home-page main {
   margin: 0;
   padding: 0;
+}
+
+/* Also hide any header wrapper elements */
+body.home-page > header,
+body.home-page > .site-header,
+body.home-page .site-header-wrapper {
+  display: none !important;
 }
 

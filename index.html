@@ -35,6 +35,26 @@ layout: default
 <script>
   // Add home-page class to body for styling overrides
   document.body.classList.add('home-page');
+  
+  // Hide header elements (fallback if CSS doesn't work)
+  document.addEventListener('DOMContentLoaded', function() {
+    const headerSelectors = [
+      '.site-header',
+      'header',
+      '.site-title',
+      '.site-nav',
+      '.trigger',
+      '.page-link'
+    ];
+    
+    headerSelectors.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(el => {
+        el.style.display = 'none';
+        el.style.visibility = 'hidden';
+      });
+    });
+  });
 </script>
 
 
