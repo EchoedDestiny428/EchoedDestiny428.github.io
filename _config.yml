@@ -1,3 +1,23 @@
 theme: jekyll-theme-minimal
 title: EchoedDestiny428 Portfolio
 description: Portfolio
+
+# Site settings
+url: "https://echoeddestiny428.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
