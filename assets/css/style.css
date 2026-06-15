@@ -1,200 +1,364 @@
-/* Hero Section with Static Black Background */
-.hero-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
+/*
+  Clean multi-page portfolio styling
+  Works with Jekyll minimal theme scaffolding.
+*/
+
+:root {
+  --bg: #0b0f19;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-2: rgba(255, 255, 255, 0.09);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.68);
+  --border: rgba(255, 255, 255, 0.14);
+  --accent: #7c5cff;
+  --accent-2: #2dd4ff;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  --radius: 16px;
+  --radius-sm: 12px;
+  --container: 1000px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(900px circle at 15% 10%, rgba(124, 92, 255, 0.25), transparent 60%),
+              radial-gradient(700px circle at 85% 25%, rgba(45, 212, 255, 0.18), transparent 55%),
+              var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+}
+
+a { color: inherit; }
+
+/* Layout injected by _layouts/default.html */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  background: rgba(11, 15, 25, 0.65);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 14px 18px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #000000 !important;
-  background-color: #000000 !important;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-/* Background Logo */
-.hero-background-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 600px;
-  height: auto;
-  opacity: 0.15;
-  z-index: 1;
-  filter: blur(2px);
-  animation: float 6s ease-in-out infinite;
+.brand {
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 0.2px;
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translate(-50%, -50%) translateY(0px);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(-20px);
-  }
+.nav {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
-/* Animated Background Particles - Hidden for static black background */
-.animated-background {
-  display: none;
+.nav-link {
+  text-decoration: none;
+  color: var(--muted);
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: 160ms ease;
 }
 
-/* Gradient Overlay removed - using static black background */
-
-/* Content Container */
-.hero-content {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  color: white;
-  padding: 2rem;
-  max-width: 800px;
+.nav-link:hover {
+  color: var(--text);
+  border-color: var(--border);
+  background: rgba(255, 255, 255, 0.04);
 }
 
-/* Header Text Styles - Monospaced Font */
+.page {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 28px 18px 50px;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: rgba(11, 15, 25, 0.55);
+}
+
+.footer-container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 16px 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Typography */
 .hero-title {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 4rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-  animation: fadeInUp 1s ease-out;
-  letter-spacing: 0;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
 }
 
 .hero-subtitle {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 1.8rem;
-  font-weight: 300;
-  margin-bottom: 2rem;
-  opacity: 0.95;
-  animation: fadeInUp 1s ease-out 0.2s both;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-  letter-spacing: 0;
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.15rem);
 }
 
 .hero-description {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 1.2rem;
-  font-weight: 300;
-  line-height: 1.8;
-  opacity: 0.9;
-  animation: fadeInUp 1s ease-out 0.4s both;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-  letter-spacing: 0;
+  margin: 0 0 22px;
+  color: var(--muted);
+  max-width: 60ch;
+  line-height: 1.6;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.page-title {
+  margin: 0 0 10px;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
 }
 
-/* Glowing Particles Effect - Hidden for static black background */
-.particles {
-  display: none;
+.lead {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 10px;
+  max-width: 70ch;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.4rem;
-  }
-  
-  .hero-description {
-    font-size: 1rem;
-  }
-  
-  .hero-background-logo {
-    width: 90%;
-  }
+.section {
+  margin-top: 26px;
 }
 
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 2rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.2rem;
-  }
-  
-  .hero-description {
-    font-size: 0.9rem;
-  }
+.section-title {
+  margin: 0 0 14px;
+  font-size: 1.35rem;
 }
 
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
+.subheading {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
 }
 
-/* Force black background on body and html */
-html,
-body {
-  background: #000000 !important;
+.muted {
+  color: var(--muted);
+}
+
+/* Hero */
+.hero {
+  padding: 26px 0 10px;
+}
+
+.hero-inner {
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border-radius: var(--radius);
+  padding: 26px 22px;
+  box-shadow: var(--shadow);
+}
+
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.button {
+  appearance: none;
+  border: 1px solid rgba(124, 92, 255, 0.6);
+  background: rgba(124, 92, 255, 0.18);
+  color: var(--text);
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 160ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(124, 92, 255, 0.9);
+}
+
+.button-secondary {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  font-weight: 700;
+}
+
+.button-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Cards / grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  min-height: 150px;
+}
+
+.card-title {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.card-text {
+  margin: 0 0 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.link {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.link:hover {
+  border-bottom-color: rgba(124, 92, 255, 0.9);
+}
+
+.pill {
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 10px;
+}
+
+/* Two-col layout */
+.two-col {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.aside {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.aside-title {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+}
+
+.list {
   margin: 0;
-  padding: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
-body.home-page {
-  background: #000000 !important;
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 14px 0;
 }
 
-/* Override default Jekyll theme styles for hero page */
-body.home-page {
-  margin: 0;
-  padding: 0;
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-body.home-page .wrapper {
-  max-width: 100%;
-  padding: 0;
-  background: #000000 !important;
-  background-color: #000000 !important;
+.chip {
+  font-size: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 8px 10px;
+  border-radius: 999px;
+  color: var(--muted);
 }
 
-/* Force black on wrapper and page elements */
-body.home-page .page-content,
-body.home-page .main-content,
-body.home-page main .wrapper {
-  background: #000000 !important;
-  background-color: #000000 !important;
+/* Form */
+.form-card {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+  padding: 16px;
 }
 
-/* Hide header and all header-related elements */
-body.home-page .site-header,
-body.home-page header,
-body.home-page .site-footer,
-body.home-page footer,
-body.home-page .site-title,
-body.home-page .site-nav,
-body.home-page .page-link,
-body.home-page .trigger {
-  display: none !important;
-  visibility: hidden !important;
+.form {
+  display: grid;
+  gap: 12px;
 }
 
-body.home-page main {
-  margin: 0;
-  padding: 0;
+.label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 14px;
 }
 
-/* Also hide any header wrapper elements */
-body.home-page > header,
-body.home-page > .site-header,
-body.home-page .site-header-wrapper {
-  display: none !important;
+.input, .textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 10px 12px;
+  outline: none;
+}
+
+.input:focus, .textarea:focus {
+  border-color: rgba(124, 92, 255, 0.9);
+  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.18);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .nav-container {
+    padding: 12px 14px;
+  }
+  .page {
+    padding: 22px 14px 40px;
+  }
 }
 

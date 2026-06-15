@@ -1,4 +1,7 @@
 theme: jekyll-theme-minimal
+
+# Enable GitHub Pages-friendly build for additional pages.
+
 title: EchoedDestiny428 Portfolio
 description: Portfolio
 

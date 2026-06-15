@@ -1,74 +1,52 @@
 ---
 layout: default
+title: Home
+permalink: /
 ---
 
-<link rel="stylesheet" href="/assets/css/style.css">
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">Your Name</h1>
+    <p class="hero-subtitle">Short tagline goes here — e.g., CS student • Web developer</p>
+    <p class="hero-description">This is a clean, simple portfolio template. Replace the placeholder text with your projects and experience.</p>
 
-<div class="hero-container">
-  <!-- Background Logo -->
-  <!-- TODO: Replace the placeholder URL with your logo -->
-  <!-- Option 1: Use local image - Put your logo in assets/images/logo.png and use: /assets/images/logo.png -->
-  <!-- Option 2: Use external URL - Replace the src below with your image URL -->
-  <img src="https://via.placeholder.com/600x600/ffffff/667eea?text=LOGO" 
-       alt="Logo" 
-       class="hero-background-logo" 
-       id="logo-image">
-  
-  <!-- Animated Background -->
-  <div class="animated-background"></div>
-  
-  <!-- Floating Particles -->
-  <div class="particles"></div>
-  
-  <!-- Hero Content -->
-  <div class="hero-content">
-    <h1 class="hero-title">EchoedDestiny428</h1>
-    <p class="hero-subtitle">Computer Science Student</p>
-    <p class="hero-description">
-      Welcome to my portfolio. Explore my work and discover what I create.
-    </p>
+    <div class="hero-cta">
+      <a class="button" href="{{ '/projects' | relative_url }}">View Projects</a>
+      <a class="button button-secondary" href="{{ '/contact' | relative_url }}">Contact</a>
+    </div>
   </div>
-</div>
+</section>
 
-<script src="/assets/js/particles.js"></script>
+<section class="section">
+  <h2 class="section-title">Featured</h2>
 
-<script>
-  // Add home-page class to body for styling overrides
-  document.body.classList.add('home-page');
-  
-  // Force black background on body and html
-  document.body.style.backgroundColor = '#000000';
-  document.documentElement.style.backgroundColor = '#000000';
-  
-  // Hide header elements (fallback if CSS doesn't work)
-  document.addEventListener('DOMContentLoaded', function() {
-    // Force black backgrounds
-    document.body.style.backgroundColor = '#000000';
-    document.documentElement.style.backgroundColor = '#000000';
-    
-    // Apply to wrapper elements
-    const wrappers = document.querySelectorAll('.wrapper, .page-content, .main-content, main');
-    wrappers.forEach(el => {
-      el.style.backgroundColor = '#000000';
-    });
-    
-    const headerSelectors = [
-      '.site-header',
-      'header',
-      '.site-title',
-      '.site-nav',
-      '.trigger',
-      '.page-link'
-    ];
-    
-    headerSelectors.forEach(selector => {
-      const elements = document.querySelectorAll(selector);
-      elements.forEach(el => {
-        el.style.display = 'none';
-        el.style.visibility = 'hidden';
-      });
-    });
-  });
-</script>
+  <div class="grid">
+    <article class="card">
+      <h3 class="card-title">Project One</h3>
+      <p class="card-text">A one-sentence description of what it does.</p>
+      <div class="card-actions">
+        <a class="link" href="#">Case Study</a>
+        <span class="pill">Tech</span>
+      </div>
+    </article>
 
+    <article class="card">
+      <h3 class="card-title">Project Two</h3>
+      <p class="card-text">A one-sentence description of what it does.</p>
+      <div class="card-actions">
+        <a class="link" href="#">Case Study</a>
+        <span class="pill">Tech</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <h3 class="card-title">Project Three</h3>
+      <p class="card-text">A one-sentence description of what it does.</p>
+      <div class="card-actions">
+        <a class="link" href="#">Case Study</a>
+        <span class="pill">Tech</span>
+      </div>
+    </article>
+  </div>
+</section>
 
