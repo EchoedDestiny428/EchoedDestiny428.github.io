@@ -117,9 +117,10 @@ a { color: inherit; }
 .hero-description {
   margin: 0 0 22px;
   color: var(--muted);
-  max-width: 60ch;
-  line-height: 1.6;
+  max-width: 62ch;
+  line-height: 1.7;
 }
+
 
 .page-title {
   margin: 0 0 10px;
@@ -158,11 +159,12 @@ a { color: inherit; }
 
 .hero-inner {
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  border-radius: var(--radius);
-  padding: 26px 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border-radius: calc(var(--radius) + 2px);
+  padding: 34px 24px;
   box-shadow: var(--shadow);
 }
+
 
 .hero-cta {
   display: flex;
@@ -211,11 +213,19 @@ a { color: inherit; }
 
 .card {
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.04);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
   border-radius: var(--radius-sm);
   padding: 16px;
   min-height: 150px;
+  transition: 180ms ease;
 }
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 92, 255, 0.55);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+}
+
 
 .card-title {
   margin: 0 0 8px;
@@ -225,8 +235,9 @@ a { color: inherit; }
 .card-text {
   margin: 0 0 14px;
   color: var(--muted);
-  line-height: 1.6;
+  line-height: 1.65;
 }
+
 
 .card-actions {
   display: flex;
