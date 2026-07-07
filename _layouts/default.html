@@ -1,32 +1,37 @@
----
-layout: jekyll-theme-minimal
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  {% seo %}
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
 
-<!--
-  We use the existing Jekyll theme for base scaffolding,
-  and inject our own minimal header/nav + footer.
--->
+  <header class="site-header">
+    <div class="nav-container">
+      <a class="brand" href="{{ '/' | relative_url }}">EchoedDestiny</a>
 
-<header class="site-header">
-  <div class="nav-container">
-    <a class="brand" href="{{ '/' | relative_url }}">Your Name</a>
+      <nav class="nav">
+        <a class="nav-link" href="{{ '/' | relative_url }}">Home</a>
+        <a class="nav-link" href="{{ '/about' | relative_url }}">About</a>
+        <a class="nav-link" href="{{ '/projects' | relative_url }}">Projects</a>
+        <a class="nav-link" href="{{ '/contact' | relative_url }}">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <nav class="nav">
-      <a class="nav-link" href="{{ '/' | relative_url }}">Home</a>
-      <a class="nav-link" href="{{ '/about' | relative_url }}">About</a>
-      <a class="nav-link" href="{{ '/projects' | relative_url }}">Projects</a>
-      <a class="nav-link" href="{{ '/contact' | relative_url }}">Contact</a>
-    </nav>
-  </div>
-</header>
+  <main class="page animate-fade-in">
+    {{ content }}
+  </main>
 
-<main class="page">
-  {{ content }}
-</main>
+  <footer class="site-footer">
+    <div class="footer-container">
+      <span>© {{ 'now' | date: '%Y' }} EchoedDestiny428. All rights reserved.</span>
+      <span>Designed with passion & precision.</span>
+    </div>
+  </footer>
 
-<footer class="site-footer">
-  <div class="footer-container">
-    <span>© {{ 'now' | date: '%Y' }} Your Name. All rights reserved.</span>
-  </div>
-</footer>
-
+</body>
+</html>
