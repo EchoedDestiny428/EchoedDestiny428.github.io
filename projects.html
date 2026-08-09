@@ -1,27 +1,69 @@
 ---
 layout: default
-title: Projects
+title: System Repository
 permalink: /projects
 ---
 
-<section class="section animate-fade-in delay-1">
-  <div class="page-header">
-    <h1 class="page-title">Selected Projects</h1>
-    <p class="lead">A showcase of systems, applications, and interactive tools built with modern web technologies.</p>
-  </div>
+<div class="container">
+  <section class="section">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <span class="section-code">// MATRIX_ARCHIVES</span>
+        <h1 class="section-title">SYSTEM REPOSITORY</h1>
+      </div>
+      <span class="badge badge-pink">{{ site.data.projects.size }} ACTIVE MODULES</span>
+    </div>
 
-  <!-- Interactive Category / Tag Filter Controls -->
-  <div class="filter-controls" id="project-filters">
-    <button class="filter-btn active" data-filter="all">All Projects</button>
-    <button class="filter-btn" data-filter="react">React / Next.js</button>
-    <button class="filter-btn" data-filter="python">Python / AI</button>
-    <button class="filter-btn" data-filter="css">CSS / UI</button>
-    <button class="filter-btn" data-filter="web app">Web Apps</button>
-  </div>
+    <!-- Search & Filter Controls -->
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">ALL MODULES</button>
+        <button class="filter-btn" data-filter="web-app">WEB APPS</button>
+        <button class="filter-btn" data-filter="ai-/-ml">AI / ML</button>
+        <button class="filter-btn" data-filter="design-system">DESIGN SYSTEMS</button>
+        <button class="filter-btn" data-filter="cli-tool">CLI TOOLS</button>
+      </div>
 
-  <div class="grid grid-2" id="projects-grid" style="margin-top: 2.5rem;">
-    {% for project in site.data.projects %}
-      {% include project-card.html project=project %}
-    {% endfor %}
-  </div>
-</section>
+      <div class="cyber-search-box">
+        <svg class="cyber-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input class="cyber-search-input" id="project-search-input" type="text" placeholder="SEARCH SYSTEM MATRIX..." />
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+      {% for item in site.data.projects %}
+        <div class="project-card" data-category="{{ item.category | downcase | replace: ' ', '-' }}" data-long-desc="{{ item.long_description }}">
+          <div>
+            <div class="project-card-header">
+              <span class="project-category">// {{ item.category }}</span>
+              <div class="project-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+            </div>
+
+            <h3 class="project-title">{{ item.title }}</h3>
+            <div class="project-subtitle">{{ item.subtitle }}</div>
+            <p class="project-desc">{{ item.description }}</p>
+
+            <div class="project-tags">
+              {% for tag in item.tags %}
+                <span class="project-tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="project-footer">
+            <a class="project-link-btn view-project-detail" href="#">
+              <span>INSPECT DIAGNOSTICS</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            {% if item.github_url %}
+              <a class="project-link-btn" href="{{ item.github_url }}" target="_blank" rel="noopener" style="color: var(--text-muted);">SOURCE</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+</div>

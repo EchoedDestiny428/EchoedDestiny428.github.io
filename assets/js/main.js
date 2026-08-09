@@ -1,169 +1,151 @@
-// Portfolio Interactive Engine
-document.addEventListener('DOMContentLoaded', function() {
-  
-  // 1. Mobile Navigation Toggle
-  const navToggle = document.getElementById('nav-toggle');
-  const navMenu = document.getElementById('nav-menu');
+/* ==========================================================================
+   ECHOED DESTINY // MAIN INTERACTION ENGINE, THEME TOGGLE & PORTFOLIO VIEW
+   ========================================================================== */
 
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      navToggle.classList.toggle('open');
-      navMenu.classList.toggle('open');
-    });
+(function () {
+  'use strict';
 
-    document.addEventListener('click', function(e) {
-      if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-        navToggle.classList.remove('open');
-        navMenu.classList.remove('open');
-      }
-    });
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    // Theme Toggle Elements
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeToggleIcon = document.getElementById('theme-toggle-icon');
+    let currentTheme = localStorage.getItem('theme_mode') || 'dark';
 
-  // 2. Project Category / Tag Filter System
-  const filterContainer = document.getElementById('project-filters');
-  const projectCards = document.querySelectorAll('#projects-grid .project-card');
+    applyTheme(currentTheme);
 
-  if (filterContainer && projectCards.length > 0) {
-    const filterButtons = filterContainer.querySelectorAll('.filter-btn');
-
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', function() {
-        // Active button highlight
-        filterButtons.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-
-        const filterValue = this.getAttribute('data-filter').toLowerCase();
-
-        projectCards.forEach(card => {
-          const category = (card.getAttribute('data-category') || '').toLowerCase();
-          const tags = (card.getAttribute('data-tags') || '').toLowerCase();
-
-          if (filterValue === 'all' || category.includes(filterValue) || tags.includes(filterValue)) {
-            card.style.display = 'flex';
-            card.classList.add('animate-fade-in');
-          } else {
-            card.style.display = 'none';
-          }
-        });
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', () => {
+        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(currentTheme);
       });
-    });
-  }
+    }
 
-  // 3. Project Quick View Modal
-  const modal = document.getElementById('project-modal');
-  const modalClose = document.getElementById('modal-close');
-
-  if (modal && modalClose) {
-    const modalTitle = document.getElementById('modal-title');
-    const modalSubtitle = document.getElementById('modal-subtitle');
-    const modalCategory = document.getElementById('modal-category');
-    const modalDescription = document.getElementById('modal-description');
-    const modalTags = document.getElementById('modal-tags');
-    const modalGithub = document.getElementById('modal-github');
-    const modalDemo = document.getElementById('modal-demo');
-
-    // Attach click triggers on project cards
-    document.addEventListener('click', function(e) {
-      const trigger = e.target.closest('.project-modal-trigger');
-      if (!trigger) return;
-
-      const title = trigger.getAttribute('data-title') || 'Project Details';
-      const subtitle = trigger.getAttribute('data-subtitle') || '';
-      const category = trigger.getAttribute('data-category') || 'Project';
-      const description = trigger.getAttribute('data-description') || '';
-      const tagsString = trigger.getAttribute('data-tags') || '';
-      const github = trigger.getAttribute('data-github') || '#';
-      const demo = trigger.getAttribute('data-demo') || '#';
-
-      if (modalTitle) modalTitle.textContent = title;
-      if (modalSubtitle) modalSubtitle.textContent = subtitle;
-      if (modalCategory) modalCategory.textContent = category;
-      if (modalDescription) modalDescription.textContent = description;
-
-      if (modalTags) {
-        modalTags.innerHTML = '';
-        if (tagsString) {
-          tagsString.split(',').forEach(tag => {
-            const span = document.createElement('span');
-            span.className = 'pill';
-            span.textContent = tag.trim();
-            modalTags.appendChild(span);
-          });
-        }
+    function applyTheme(theme) {
+      localStorage.setItem('theme_mode', theme);
+      document.documentElement.setAttribute('data-theme', theme);
+      if (themeToggleIcon) {
+        themeToggleIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
       }
+    }
 
-      if (modalGithub) modalGithub.href = github;
-      if (modalDemo) modalDemo.href = demo;
+    // View & Mode Elements
+    const modeSelectionView = document.getElementById('mode-selection-view');
+    const basicPortfolioView = document.getElementById('basic-portfolio-view');
+    const cardBasic = document.getElementById('card-basic');
+    const cardAdvanced = document.getElementById('card-advanced');
+    const switchModeBtn = document.getElementById('switch-mode-btn');
 
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-    });
+    // Confirmation Modal Elements
+    const confirmOverlay = document.getElementById('confirm-modal-overlay');
+    const confirmIcon = document.getElementById('confirm-modal-icon');
+    const confirmTitle = document.getElementById('confirm-modal-title');
+    const confirmDesc = document.getElementById('confirm-modal-desc');
+    const cancelBtn = document.getElementById('confirm-cancel-btn');
+    const proceedBtn = document.getElementById('confirm-proceed-btn');
 
-    const closeModal = function() {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-    };
+    let selectedPendingMode = null;
+    let currentMode = localStorage.getItem('cyber_mode');
 
-    modalClose.addEventListener('click', closeModal);
+    if (currentMode) {
+      applyMode(currentMode);
+    }
 
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
+    // Card click triggers confirmation modal
+    if (cardBasic) {
+      cardBasic.addEventListener('click', () => {
+        openConfirmationModal('basic');
+      });
+    }
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && modal.classList.contains('open')) {
-        closeModal();
-      }
-    });
-  }
+    if (cardAdvanced) {
+      cardAdvanced.addEventListener('click', () => {
+        openConfirmationModal('advanced');
+      });
+    }
 
-  // 4. Back to Top Button
-  const backToTopBtn = document.getElementById('back-to-top');
-  if (backToTopBtn) {
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 300) {
-        backToTopBtn.classList.add('visible');
+    function openConfirmationModal(mode) {
+      selectedPendingMode = mode;
+
+      if (mode === 'basic') {
+        if (confirmIcon) confirmIcon.textContent = '📱';
+        if (confirmTitle) confirmTitle.textContent = 'Confirm Basic Mode';
+        if (confirmDesc) confirmDesc.textContent = 'A simple about-me portfolio (boring!!!). Are you sure you want to activate Basic Mode?';
       } else {
-        backToTopBtn.classList.remove('visible');
+        if (confirmIcon) confirmIcon.textContent = '⚡';
+        if (confirmTitle) confirmTitle.textContent = 'Confirm Advanced Mode';
+        if (confirmDesc) confirmDesc.textContent = 'I... suggest headphones. (and WiFi). Are you ready to launch Advanced Mode?';
       }
-    });
 
-    backToTopBtn.addEventListener('click', function() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+      if (confirmOverlay) {
+        confirmOverlay.classList.add('active');
+      }
+    }
+
+    function closeConfirmationModal() {
+      if (confirmOverlay) {
+        confirmOverlay.classList.remove('active');
+      }
+      selectedPendingMode = null;
+    }
+
+    if (cancelBtn) {
+      cancelBtn.addEventListener('click', () => {
+        closeConfirmationModal();
       });
-    });
-  }
+    }
 
-  // 5. Contact Form Demonstration Handler
-  const contactForm = document.getElementById('contact-form');
-  const formStatus = document.getElementById('form-status');
+    if (proceedBtn) {
+      proceedBtn.addEventListener('click', () => {
+        if (selectedPendingMode) {
+          applyMode(selectedPendingMode);
+        }
+        closeConfirmationModal();
+      });
+    }
 
-  if (contactForm && formStatus) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = '0.7';
+    // Close modal on backdrop click
+    if (confirmOverlay) {
+      confirmOverlay.addEventListener('click', (e) => {
+        if (e.target === confirmOverlay) {
+          closeConfirmationModal();
+        }
+      });
+    }
+
+    if (switchModeBtn) {
+      switchModeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('cyber_mode');
+        document.body.removeAttribute('data-mode');
+        if (modeSelectionView) modeSelectionView.classList.remove('hidden');
+        if (basicPortfolioView) basicPortfolioView.classList.remove('active');
+        if (window.AmbientMesh) window.AmbientMesh.setMode('basic');
+      });
+    }
+
+    function applyMode(mode) {
+      currentMode = mode;
+      localStorage.setItem('cyber_mode', mode);
+      document.body.setAttribute('data-mode', mode);
+
+      if (window.AmbientMesh) {
+        window.AmbientMesh.setMode(mode);
       }
 
-      formStatus.className = 'form-status success';
-      formStatus.innerHTML = '✨ Thank you! Your message has been received. (Demonstration Mode)';
+      if (mode === 'basic') {
+        if (modeSelectionView) modeSelectionView.classList.add('hidden');
+        if (basicPortfolioView) basicPortfolioView.classList.add('active');
+      }
+    }
 
-      setTimeout(function() {
-        contactForm.reset();
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.style.opacity = '1';
-        }
-      }, 2500);
-    });
-  }
-
-});
+    // Basic Contact Form Submit
+    const basicForm = document.getElementById('basic-contact-form');
+    if (basicForm) {
+      basicForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you! Your message has been sent successfully.');
+        basicForm.reset();
+      });
+    }
+  });
+})();

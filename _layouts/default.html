@@ -1,30 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   {% include head.html %}
 </head>
 <body>
 
-  <!-- Floating Background Particle Container -->
-  <div class="particles" id="particles-container"></div>
-
-  {% include header.html %}
-
-  <main class="page animate-fade-in" id="main-content">
-    {{ content }}
-  </main>
-
-  {% include footer.html %}
-
-  <!-- Quick View Project Modal -->
-  {% include project-modal.html %}
-
-  <!-- Back to Top Button -->
-  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+  <!-- Floating Top-Right Theme Toggle (Light / Dark Mode) -->
+  <button class="theme-toggle-floating" id="theme-toggle-btn" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
+    <span id="theme-toggle-icon">🌙</span>
   </button>
 
-  <!-- JavaScript Modules -->
+  <!-- Ambient Mesh Canvas -->
+  <canvas id="cyber-canvas"></canvas>
+
+  <div class="main-wrapper">
+
+    <!-- VIEW 1: MODE SELECTION GATE -->
+    <div class="mode-selection-view" id="mode-selection-view">
+      <!-- Header Title Section -->
+      <header class="header-section">
+        <h1 class="main-title">Choose your experience mode to continue</h1>
+      </header>
+
+      <!-- The 2 Large Buttons -->
+      <div class="cards-grid">
+        <!-- BASIC CARD BUTTON -->
+        <div class="mode-card basic" id="card-basic">
+          <div class="card-top">
+            <div class="card-header-row">
+              <h2 class="card-title">Basic</h2>
+              <div class="card-icon">📱</div>
+            </div>
+
+            <span class="card-badge">recommended for phones</span>
+
+            <p class="card-description">
+              A simple about-me portolio (boring!!!)
+            </p>
+          </div>
+
+          <div class="card-action">
+            <span>Continue with Basic</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- ADVANCED CARD BUTTON -->
+        <div class="mode-card advanced" id="card-advanced">
+          <div class="card-top">
+            <div class="card-header-row">
+              <h2 class="card-title">Advanced</h2>
+              <div class="card-icon">⚡</div>
+            </div>
+
+            <span class="card-badge">caution: will chew internet.</span>
+
+            <p class="card-description">
+              I... suggest headphones. (and WiFi)
+            </p>
+          </div>
+
+          <div class="card-action">
+            <span>Launch Advanced</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 2: BASIC MODE PORTFOLIO -->
+    <div class="basic-portfolio-view" id="basic-portfolio-view">
+      <!-- Portfolio Nav Header -->
+      <nav class="portfolio-header-nav">
+        <div class="portfolio-brand">{{ site.data.site_info.brand_name }} <span>.</span></div>
+        <div class="portfolio-nav-links">
+          <a class="portfolio-nav-link" href="#about">About</a>
+          <a class="portfolio-nav-link" href="#projects">Projects</a>
+          <a class="portfolio-nav-link" href="#contact">Contact</a>
+          <button class="btn-portfolio secondary" id="switch-mode-btn" style="padding: 6px 16px; font-size: 0.8rem;">Switch Mode</button>
+        </div>
+      </nav>
+
+      <!-- Portfolio Hero -->
+      <section class="portfolio-hero">
+        <span class="portfolio-hero-badge">Welcome to my portfolio</span>
+        <h1 class="portfolio-hero-title">Hello, I'm {{ site.data.site_info.brand_name }}.</h1>
+        <p class="portfolio-hero-subtitle">
+          {{ site.data.site_info.bio_lead | default: "Software Engineer & Creative Developer building clean, responsive web applications." }}
+        </p>
+        <div class="portfolio-hero-btns">
+          <a class="btn-portfolio primary" href="#projects">
+            <span>View Projects</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+          <a class="btn-portfolio secondary" href="#contact">Get in Touch</a>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="portfolio-section" id="about">
+        <h2 class="portfolio-section-title">About Me</h2>
+        <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 720px; margin-bottom: 20px;">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <span class="project-tag-pill">JavaScript (ES6+)</span>
+          <span class="project-tag-pill">HTML5 & CSS3</span>
+          <span class="project-tag-pill">React & Next.js</span>
+          <span class="project-tag-pill">Node.js</span>
+          <span class="project-tag-pill">UI/UX Design</span>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section class="portfolio-section" id="projects">
+        <h2 class="portfolio-section-title">Projects</h2>
+        <div class="portfolio-projects-grid">
+          <!-- Project Card 1 -->
+          <div class="portfolio-project-card">
+            <div>
+              <h3 class="project-card-name">Project Orion</h3>
+              <p class="project-card-desc">
+                Real-time analytics dashboard with deep data telemetry and responsive interactive charts.
+              </p>
+              <div class="project-card-tags">
+                <span class="project-tag-pill">React</span>
+                <span class="project-tag-pill">Analytics</span>
+              </div>
+            </div>
+            <a class="project-card-link" href="#">
+              <span>View Source</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- Project Card 2 -->
+          <div class="portfolio-project-card">
+            <div>
+              <h3 class="project-card-name">Nexus AI</h3>
+              <p class="project-card-desc">
+                AI copywriting and content generation engine with real-time stream completion.
+              </p>
+              <div class="project-card-tags">
+                <span class="project-tag-pill">Python</span>
+                <span class="project-tag-pill">FastAPI</span>
+              </div>
+            </div>
+            <a class="project-card-link" href="#">
+              <span>View Source</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- Project Card 3 -->
+          <div class="portfolio-project-card">
+            <div>
+              <h3 class="project-card-name">Aurora UI</h3>
+              <p class="project-card-desc">
+                Accessible, zero-dependency component library built with modern CSS and JavaScript.
+              </p>
+              <div class="project-card-tags">
+                <span class="project-tag-pill">CSS3</span>
+                <span class="project-tag-pill">Design System</span>
+              </div>
+            </div>
+            <a class="project-card-link" href="#">
+              <span>View Source</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="portfolio-section" id="contact">
+        <h2 class="portfolio-section-title">Get in Touch</h2>
+        <div class="portfolio-contact-box">
+          <form id="basic-contact-form">
+            <div class="contact-field-group">
+              <label class="contact-field-label" for="basic-name">Name</label>
+              <input class="contact-field-input" id="basic-name" type="text" placeholder="Your name" required />
+            </div>
+
+            <div class="contact-field-group">
+              <label class="contact-field-label" for="basic-email">Email</label>
+              <input class="contact-field-input" id="basic-email" type="email" placeholder="Your email address" required />
+            </div>
+
+            <div class="contact-field-group">
+              <label class="contact-field-label" for="basic-message">Message</label>
+              <textarea class="contact-field-textarea" id="basic-message" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <button class="btn-portfolio primary" type="submit" style="width: 100%; justify-content: center;">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <!-- Centered Confirmation Modal Overlay -->
+    <div class="confirm-modal-overlay" id="confirm-modal-overlay">
+      <div class="confirm-modal-box">
+        <div class="confirm-modal-icon" id="confirm-modal-icon">✦</div>
+        <h2 class="confirm-modal-title" id="confirm-modal-title">Confirm Selection</h2>
+        <p class="confirm-modal-desc" id="confirm-modal-desc">
+          Are you sure you want to proceed with this experience mode?
+        </p>
+
+        <div class="confirm-modal-actions">
+          <button class="confirm-btn cancel" id="confirm-cancel-btn">Cancel</button>
+          <button class="confirm-btn proceed" id="confirm-proceed-btn">Confirm & Launch</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-text">
+      &copy; {{ 'now' | date: "%Y" }}. Built with smooth lines.
+    </div>
+  </div>
+
   <script src="{{ '/assets/js/particles.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
 

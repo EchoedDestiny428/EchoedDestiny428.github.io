@@ -1,25 +1,30 @@
-<div class="modal-overlay" id="project-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
-  <div class="modal-content">
-    <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
-    <div class="modal-header">
-      <span class="pill" id="modal-category">Category</span>
-      <h2 class="modal-title" id="modal-title">Project Title</h2>
-      <p class="modal-subtitle" id="modal-subtitle">Project Subtitle</p>
+<div class="mode-modal-overlay" id="project-modal">
+  <div class="mode-modal-container" style="max-width: 720px;">
+    <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px;">
+      <div>
+        <span class="badge" id="modal-category">WEB SYSTEM</span>
+        <h3 id="modal-title" style="font-size: 1.8rem; margin-top: 8px;">PROJECT TITLE</h3>
+      </div>
+      <button class="btn btn-outline" id="project-modal-close" style="padding: 6px 12px; font-size: 0.8rem;">[ CLOSE ]</button>
     </div>
-    <div class="modal-body">
-      <p id="modal-description">Detailed project description will be injected here dynamically.</p>
-      <div class="modal-tags-container">
-        <strong>Technologies:</strong>
-        <div class="card-tags" id="modal-tags"></div>
+
+    <p id="modal-desc" style="color: var(--text-muted); font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">
+      Detailed system specification and telemetry report for the selected project.
+    </p>
+
+    <div class="terminal-block" style="margin-bottom: 24px;">
+      <div class="terminal-header">
+        <span>PROJECT_DIAGNOSTICS.SH</span>
+        <span>STATUS: 200 OK</span>
+      </div>
+      <div class="terminal-body">
+        <pre id="modal-code" style="font-family: var(--font-mono); color: var(--cyan); white-space: pre-wrap; font-size: 0.82rem; margin: 0;"></pre>
       </div>
     </div>
-    <div class="modal-footer">
-      <a class="button" id="modal-github" href="#" target="_blank" rel="noopener noreferrer">
-        View Source Code
-      </a>
-      <a class="button button-secondary" id="modal-demo" href="#" target="_blank" rel="noopener noreferrer">
-        Live Demo
-      </a>
+
+    <div style="display: flex; gap: 16px;">
+      <a class="btn" id="modal-github" href="https://github.com/EchoedDestiny428" target="_blank" rel="noopener">REPOSITORY</a>
+      <a class="btn btn-outline" id="modal-demo" href="#" target="_blank" rel="noopener">LIVE SYSTEM</a>
     </div>
   </div>
 </div>

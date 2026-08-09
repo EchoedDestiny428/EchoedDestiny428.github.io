@@ -1,20 +1,36 @@
 <header class="site-header" id="site-header">
-  <div class="nav-container">
+  <div class="container nav-container">
     <a class="brand" href="{{ '/' | relative_url }}">
-      <span class="brand-text">{{ site.data.site_info.brand_name }}</span>
+      <div class="brand-icon">ED</div>
+      <span class="brand-text">{{ site.data.site_info.brand_name }} <span>// 428</span></span>
     </a>
 
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu">
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
-    </button>
+    <div class="nav-controls">
+      <!-- Mode Selector Trigger Pill -->
+      <button class="mode-switch-pill" id="mode-switch-btn" title="Switch Performance Mode (Basic / Advanced)">
+        <span class="status-dot"></span>
+        <span>MODE: <strong id="mode-pill-text">BASIC</strong></span>
+      </button>
 
-    <nav class="nav" id="nav-menu">
-      <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a>
-      <a class="nav-link {% if page.url == '/about' or page.url == '/about.html' %}active{% endif %}" href="{{ '/about' | relative_url }}">About</a>
-      <a class="nav-link {% if page.url == '/projects' or page.url == '/projects.html' %}active{% endif %}" href="{{ '/projects' | relative_url }}">Projects</a>
-      <a class="nav-link {% if page.url == '/contact' or page.url == '/contact.html' %}active{% endif %}" href="{{ '/contact' | relative_url }}">Contact</a>
-    </nav>
+      <!-- Web Audio SFX Toggle -->
+      <button class="audio-toggle-btn" id="audio-toggle-btn" title="Toggle Sound SFX">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"></line><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon></svg>
+      </button>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
+      <!-- Nav Menu -->
+      <nav id="nav-menu">
+        <ul class="nav-menu">
+          <li><a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a></li>
+          <li><a class="nav-link {% if page.url == '/projects' or page.url == '/projects.html' %}active{% endif %}" href="{{ '/projects' | relative_url }}">Projects</a></li>
+          <li><a class="nav-link {% if page.url == '/about' or page.url == '/about.html' %}active{% endif %}" href="{{ '/about' | relative_url }}">About</a></li>
+          <li><a class="nav-link {% if page.url == '/contact' or page.url == '/contact.html' %}active{% endif %}" href="{{ '/contact' | relative_url }}">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>

@@ -1,57 +1,162 @@
 ---
 layout: default
-title: About
+title: Operative Profile
 permalink: /about
 ---
 
-<section class="section animate-fade-in delay-1">
-  <h1 class="page-title">About Me</h1>
-  <div class="two-col">
-    <div>
-      <h2 class="subheading">The Developer Behind the Screen</h2>
-      <p class="lead">
-        {{ site.data.site_info.bio_lead }}
-      </p>
-      <p class="lead" style="font-size: 1.05rem;">
-        {{ site.data.site_info.bio_secondary }}
-      </p>
-      
-      <h2 class="subheading" style="margin-top: 2.5rem;">Technical Arsenal</h2>
-      <div class="skills-sections">
-        {% for skill_group in site.data.skills %}
-          <div class="skill-category-block">
-            <h3 class="skill-category-title">{{ skill_group.category }}</h3>
-            <div class="chips">
-              {% for item in skill_group.items %}
-                <span class="chip" data-level="{{ item.level }}">
-                  {{ item.name }}
-                  <small class="chip-level">{{ item.level }}</small>
-                </span>
-              {% endfor %}
-            </div>
+<div class="container">
+  <section class="section">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <span class="section-code">// OPERATIVE_DOSSIER</span>
+        <h1 class="section-title">ABOUT OPERATIVE</h1>
+      </div>
+      <span class="badge">// CLEARANCE: LEVEL 5</span>
+    </div>
+
+    <div class="hero-grid" style="margin-bottom: 60px;">
+      <div>
+        <h2 style="font-size: 2rem; margin-bottom: 16px; color: var(--cyan);">
+          {{ site.data.site_info.author_name }}
+        </h2>
+        <div class="project-subtitle" style="font-size: 1.1rem; margin-bottom: 24px;">
+          {{ site.data.site_info.role }}
+        </div>
+        <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
+          {{ site.data.site_info.bio_lead }}
+        </p>
+        <p style="font-size: 1rem; color: var(--text-dim); line-height: 1.6;">
+          {{ site.data.site_info.bio_secondary }}
+        </p>
+      </div>
+
+      <!-- Operative Specs Panel -->
+      <div class="hud-telemetry-panel">
+        <h3 style="font-size: 1.1rem; color: var(--cyan); margin-bottom: 16px;">CORE TELEMETRY</h3>
+        <div class="hud-stat-grid" style="grid-template-columns: 1fr;">
+          <div class="hud-stat-item">
+            <div class="hud-stat-label">LOCATION</div>
+            <div class="hud-stat-value" style="font-size: 1rem;">{{ site.data.site_info.location }}</div>
           </div>
-        {% endfor %}
+          <div class="hud-stat-item">
+            <div class="hud-stat-label">EDUCATION</div>
+            <div class="hud-stat-value pink" style="font-size: 1rem;">{{ site.data.site_info.education }}</div>
+          </div>
+          <div class="hud-stat-item">
+            <div class="hud-stat-label">ENGINEERING EXPERIENCE</div>
+            <div class="hud-stat-value green" style="font-size: 1rem;">{{ site.data.site_info.experience }}</div>
+          </div>
+          <div class="hud-stat-item">
+            <div class="hud-stat-label">DIRECT SIGNAL</div>
+            <div class="hud-stat-value" style="font-size: 0.95rem; color: var(--amber);">{{ site.data.site_info.email }}</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <aside class="aside">
-      <h3 class="aside-title">Quick Facts</h3>
-      <ul class="list">
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg> 
-          <strong>Education:</strong> {{ site.data.site_info.education }}
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg> 
-          <strong>Experience:</strong> {{ site.data.site_info.experience }}
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg> 
-          <strong>Location:</strong> {{ site.data.site_info.location }}
-        </li>
-      </ul>
-      <div class="divider"></div>
-      <a class="button button-secondary" style="width: 100%" href="{{ '/projects' | relative_url }}">View My Work</a>
-    </aside>
-  </div>
-</section>
+    <!-- Skills Matrix Section -->
+    <div style="margin-bottom: 60px;">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-code">// CAPABILITIES</span>
+          <h2 class="section-title">TECHNICAL SKILLS MATRIX</h2>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Frontend Card -->
+        <div class="skill-category-card">
+          <div class="skill-category-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <span>FRONTEND SYSTEM</span>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">JavaScript (ES6+ / TS)</span><span class="skill-level-text">95%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-level="95"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Modern CSS & Cyber FX</span><span class="skill-level-text">92%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-level="92"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">React / Next.js Frameworks</span><span class="skill-level-text">88%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-level="88"></div></div>
+          </div>
+        </div>
+
+        <!-- Backend Card -->
+        <div class="skill-category-card">
+          <div class="skill-category-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            <span>BACKEND & PIPELINES</span>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Node.js & Express</span><span class="skill-level-text">90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Python & FastAPI</span><span class="skill-level-text">85%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-level="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">WebSockets & Telemetry</span><span class="skill-level-text">86%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-level="86"></div></div>
+          </div>
+        </div>
+
+        <!-- AI & Systems Card -->
+        <div class="skill-category-card">
+          <div class="skill-category-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line></svg>
+            <span>AI / ML & TOOLING</span>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Prompt Engineering & LLMs</span><span class="skill-level-text">90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Git & CI/CD Workflows</span><span class="skill-level-text">92%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-level="92"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Web Audio & Canvas Shaders</span><span class="skill-level-text">84%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-level="84"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Experience Section -->
+    <div>
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-code">// TIMELINE_LOGS</span>
+          <h2 class="section-title">SYSTEM DEPLOYMENTS & CHRONOLOGY</h2>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">2024 - PRESENT</div>
+            <h3 class="timeline-role">Lead Software Engineer // Cyber Operations</h3>
+            <p class="timeline-desc">Architecting real-time streaming platforms, high-throughput web visualizers, and AI content engines with micro-animations.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">2022 - 2024</div>
+            <h3 class="timeline-role">Frontend & UI Systems Engineer</h3>
+            <p class="timeline-desc">Developed accessible component design libraries, high-speed telemetry dashboards, and cross-platform web client tools.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
