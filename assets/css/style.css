@@ -1,6 +1,6 @@
 /* ==========================================================================
    ECHOED DESTINY // MODERN WHITE, GOLD & BLACK LUXURY DESIGN SYSTEM
-   Supports Light / Dark Mode Toggle & Basic Portfolio View
+   Supports Light / Dark Mode Toggle, Basic Portfolio, 3D Engine & Loading Overlay
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -654,4 +654,228 @@ html, body {
   color: var(--text-dim);
   margin-top: 40px;
   text-align: center;
+}
+
+/* ==========================================================================
+   3D LOADING SCREEN OVERLAY
+   ========================================================================== */
+.loading-screen-3d {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10005;
+  background: #050508;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.loading-screen-3d.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.loading-spinner-ring {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid var(--gold-dim);
+  border-top-color: var(--gold-primary);
+  animation: spin 1s infinite linear;
+  margin-bottom: 24px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-status-text {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+
+.loading-bar-wrapper {
+  width: 280px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--gold-primary);
+  box-shadow: 0 0 10px var(--gold-bright);
+  transition: width 0.3s ease;
+}
+
+/* ==========================================================================
+   ADVANCED 3D FIRST-PERSON WEBGL VIEWPORT & HUD STYLES
+   ========================================================================== */
+.advanced-3d-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: none;
+  background: #050508;
+}
+
+.advanced-3d-view.active {
+  display: block;
+}
+
+#3d-webgl-canvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+/* PointerLock Enter Screen Overlay */
+.fps-click-trigger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: rgba(5, 5, 8, 0.75);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 24px;
+}
+
+body.fps-locked .fps-click-trigger {
+  display: none;
+}
+
+.fps-enter-box {
+  background: var(--bg-surface-hover);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-xl);
+  padding: 40px 36px;
+  text-align: center;
+  max-width: 520px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px var(--gold-glow);
+  transition: transform 0.25s ease;
+}
+
+.fps-enter-box:hover {
+  transform: scale(1.03);
+}
+
+/* Crosshair in 3D center */
+.fps-crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: monospace;
+  font-size: 1.6rem;
+  color: var(--gold-primary);
+  pointer-events: none;
+  z-index: 5;
+  user-select: none;
+  opacity: 0.85;
+  text-shadow: 0 0 8px var(--gold-bright);
+}
+
+/* FPS HUD Top Bars */
+.fps-hud-top-left {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 5;
+}
+
+.fps-hud-top-right {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 5;
+}
+
+.fps-hud-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(18, 18, 24, 0.85);
+  border: 1px solid var(--border-gold);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  backdrop-filter: blur(12px);
+}
+
+/* Interaction Prompt */
+.fps-interact-prompt {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  padding: 10px 24px;
+  border-radius: 30px;
+  background: var(--gold-primary);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 25px var(--gold-glow);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  pointer-events: none;
+}
+
+.fps-interact-prompt.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Terminal Question Modal Options */
+.t-q-options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.t-q-option-btn {
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-gold);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.t-q-option-btn:hover {
+  background: var(--gold-primary);
+  color: #ffffff;
+  transform: translateX(4px);
 }

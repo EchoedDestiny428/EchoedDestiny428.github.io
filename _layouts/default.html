@@ -13,6 +13,15 @@
   <!-- Ambient Mesh Canvas -->
   <canvas id="cyber-canvas"></canvas>
 
+  <!-- TEMPORARY 3D LOADING SCREEN OVERLAY -->
+  <div class="loading-screen-3d" id="3d-loading-screen">
+    <div class="loading-spinner-ring"></div>
+    <div class="loading-status-text" id="loading-status-text">INITIALIZING 3D WORLD...</div>
+    <div class="loading-bar-wrapper">
+      <div class="loading-bar-fill" id="loading-bar-fill"></div>
+    </div>
+  </div>
+
   <div class="main-wrapper">
 
     <!-- VIEW 1: MODE SELECTION GATE -->
@@ -74,7 +83,6 @@
 
     <!-- VIEW 2: BASIC MODE PORTFOLIO -->
     <div class="basic-portfolio-view" id="basic-portfolio-view">
-      <!-- Portfolio Nav Header -->
       <nav class="portfolio-header-nav">
         <div class="portfolio-brand">{{ site.data.site_info.brand_name }} <span>.</span></div>
         <div class="portfolio-nav-links">
@@ -85,7 +93,6 @@
         </div>
       </nav>
 
-      <!-- Portfolio Hero -->
       <section class="portfolio-hero">
         <span class="portfolio-hero-badge">Welcome to my portfolio</span>
         <h1 class="portfolio-hero-title">Hello, I'm {{ site.data.site_info.brand_name }}.</h1>
@@ -101,7 +108,6 @@
         </div>
       </section>
 
-      <!-- About Section -->
       <section class="portfolio-section" id="about">
         <h2 class="portfolio-section-title">About Me</h2>
         <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 720px; margin-bottom: 20px;">
@@ -117,11 +123,9 @@
         </div>
       </section>
 
-      <!-- Projects Section -->
       <section class="portfolio-section" id="projects">
         <h2 class="portfolio-section-title">Projects</h2>
         <div class="portfolio-projects-grid">
-          <!-- Project Card 1 -->
           <div class="portfolio-project-card">
             <div>
               <h3 class="project-card-name">Project Orion</h3>
@@ -139,7 +143,6 @@
             </a>
           </div>
 
-          <!-- Project Card 2 -->
           <div class="portfolio-project-card">
             <div>
               <h3 class="project-card-name">Nexus AI</h3>
@@ -157,7 +160,6 @@
             </a>
           </div>
 
-          <!-- Project Card 3 -->
           <div class="portfolio-project-card">
             <div>
               <h3 class="project-card-name">Aurora UI</h3>
@@ -177,7 +179,6 @@
         </div>
       </section>
 
-      <!-- Contact Section -->
       <section class="portfolio-section" id="contact">
         <h2 class="portfolio-section-title">Get in Touch</h2>
         <div class="portfolio-contact-box">
@@ -205,28 +206,60 @@
       </section>
     </div>
 
-    <!-- Centered Confirmation Modal Overlay -->
-    <div class="confirm-modal-overlay" id="confirm-modal-overlay">
-      <div class="confirm-modal-box">
-        <div class="confirm-modal-icon" id="confirm-modal-icon">✦</div>
-        <h2 class="confirm-modal-title" id="confirm-modal-title">Confirm Selection</h2>
-        <p class="confirm-modal-desc" id="confirm-modal-desc">
-          Are you sure you want to proceed with this experience mode?
-        </p>
-
-        <div class="confirm-modal-actions">
-          <button class="confirm-btn cancel" id="confirm-cancel-btn">Cancel</button>
-          <button class="confirm-btn proceed" id="confirm-proceed-btn">Confirm & Launch</button>
-        </div>
-      </div>
-    </div>
-
     <div class="footer-text">
       &copy; {{ 'now' | date: "%Y" }}. Built with smooth lines.
     </div>
   </div>
 
+  <!-- VIEW 3: ADVANCED MODE 3D FIRST-PERSON MULTIPLAYER WORLD -->
+  <div class="advanced-3d-view" id="advanced-3d-view">
+    <canvas id="3d-webgl-canvas"></canvas>
+
+    <!-- PointerLock Click Trigger Overlay -->
+    <div class="fps-click-trigger" id="fps-click-trigger">
+      <div class="fps-enter-box">
+        <div style="font-size: 2.2rem; margin-bottom: 10px;">🎮</div>
+        <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 8px;">CLICK TO ENTER 3D WORLD</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
+          Controls: [W, A, S, D] Walk &bull; [Shift] Sprint &bull; [Space] Jump &bull; [Mouse] Look &bull; [ESC] Unlock
+        </p>
+        <span class="card-badge">global webRTC multiplayer connected</span>
+      </div>
+    </div>
+
+    <!-- FPS HUD Crosshair & Overlays -->
+    <div class="fps-crosshair">+</div>
+
+    <div class="fps-hud-top-left">
+      <div class="fps-hud-badge">
+        <span class="active-dot"></span>
+        <span id="global-online-count">1 PLAYER ONLINE</span>
+      </div>
+    </div>
+
+    <div class="fps-hud-top-right">
+      <button class="reset-btn" id="exit-3d-view-btn">Exit 3D World</button>
+    </div>
+  </div>
+
+  <!-- Centered Confirmation Modal Overlay -->
+  <div class="confirm-modal-overlay" id="confirm-modal-overlay">
+    <div class="confirm-modal-box">
+      <div class="confirm-modal-icon" id="confirm-modal-icon">✦</div>
+      <h2 class="confirm-modal-title" id="confirm-modal-title">Confirm Selection</h2>
+      <p class="confirm-modal-desc" id="confirm-modal-desc">
+        Are you sure you want to proceed with this experience mode?
+      </p>
+
+      <div class="confirm-modal-actions">
+        <button class="confirm-btn cancel" id="confirm-cancel-btn">Cancel</button>
+        <button class="confirm-btn proceed" id="confirm-proceed-btn">Confirm & Launch</button>
+      </div>
+    </div>
+  </div>
+
   <script src="{{ '/assets/js/particles.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/advanced_3d.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
 
 </body>
