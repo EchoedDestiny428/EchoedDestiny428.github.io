@@ -5,44 +5,23 @@ permalink: /projects
 ---
 
 <section class="section animate-fade-in delay-1">
-  <h1 class="page-title">Selected Projects</h1>
-  <p class="lead">A showcase of things I've built, ranging from web applications to open-source tools.</p>
+  <div class="page-header">
+    <h1 class="page-title">Selected Projects</h1>
+    <p class="lead">A showcase of systems, applications, and interactive tools built with modern web technologies.</p>
+  </div>
 
-  <div class="grid grid-2" style="margin-top: 3rem;">
-    <article class="card">
-      <h2 class="card-title">Project Orion</h2>
-      <p class="card-text">A high-performance analytics dashboard featuring real-time data visualization and deep insights. Built to handle millions of data points smoothly.</p>
-      <div class="card-actions">
-        <a class="link" href="#">GitHub</a>
-        <a class="link" href="#">Live Demo</a>
-      </div>
-    </article>
+  <!-- Interactive Category / Tag Filter Controls -->
+  <div class="filter-controls" id="project-filters">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="react">React / Next.js</button>
+    <button class="filter-btn" data-filter="python">Python / AI</button>
+    <button class="filter-btn" data-filter="css">CSS / UI</button>
+    <button class="filter-btn" data-filter="web app">Web Apps</button>
+  </div>
 
-    <article class="card">
-      <h2 class="card-title">Nexus AI</h2>
-      <p class="card-text">An AI-driven content generation tool tailored for marketing agencies and copywriters. Generates high-converting copy in seconds.</p>
-      <div class="card-actions">
-        <a class="link" href="#">GitHub</a>
-        <a class="link" href="#">Live Demo</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <h2 class="card-title">Aurora UI</h2>
-      <p class="card-text">A comprehensive, accessible component library built with modern CSS and JavaScript. Includes 50+ pre-built components.</p>
-      <div class="card-actions">
-        <a class="link" href="#">GitHub</a>
-        <a class="link" href="#">Live Demo</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <h2 class="card-title">Crypto Tracker</h2>
-      <p class="card-text">A sleek mobile-first web app that tracks cryptocurrency prices, historical charts, and news feeds via third-party APIs.</p>
-      <div class="card-actions">
-        <a class="link" href="#">GitHub</a>
-        <a class="link" href="#">Live Demo</a>
-      </div>
-    </article>
+  <div class="grid grid-2" id="projects-grid" style="margin-top: 2.5rem;">
+    {% for project in site.data.projects %}
+      {% include project-card.html project=project %}
+    {% endfor %}
   </div>
 </section>

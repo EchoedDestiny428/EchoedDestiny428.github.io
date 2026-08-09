@@ -1,0 +1,59 @@
+- id: "project-orion"
+  title: "Project Orion"
+  subtitle: "Real-time Analytics Dashboard"
+  description: "A high-performance analytics dashboard featuring real-time data visualization and deep insights. Built to handle millions of data points smoothly."
+  long_description: "Project Orion is an enterprise-grade analytics dashboard that aggregates telemetry and user activity in real-time. Built with interactive canvas charts, optimized WebSocket pipelines, and responsive layout primitives."
+  category: "Web App"
+  tags: ["React", "TypeScript", "WebSocket", "Analytics"]
+  featured: true
+  github_url: "https://github.com/EchoedDestiny428"
+  demo_url: "#"
+  icon: "bar-chart-2"
+
+- id: "nexus-ai"
+  title: "Nexus AI"
+  subtitle: "AI Copywriting Engine"
+  description: "An AI-driven content generation tool tailored for marketing agencies and copywriters. Generates high-converting copy in seconds."
+  long_description: "Nexus AI empowers copywriters with fast prompt-engineered templates and automated workflows. Features include real-time stream completion, multi-language support, and custom tone adjustments."
+  category: "AI / ML"
+  tags: ["Python", "OpenAI API", "FastAPI", "Next.js"]
+  featured: true
+  github_url: "https://github.com/EchoedDestiny428"
+  demo_url: "#"
+  icon: "cpu"
+
+- id: "aurora-ui"
+  title: "Aurora UI"
+  subtitle: "Design System & Component Library"
+  description: "A comprehensive, accessible component library built with modern CSS and JavaScript. Includes 50+ pre-built accessible components."
+  long_description: "Aurora UI emphasizes visual precision, glassmorphism aesthetics, accessible DOM structures, and fluid micro-animations. Zero external dependency, light and dark theme ready."
+  category: "Design System"
+  tags: ["CSS", "JavaScript", "Accessibility", "UI/UX"]
+  featured: true
+  github_url: "https://github.com/EchoedDestiny428"
+  demo_url: "#"
+  icon: "layers"
+
+- id: "crypto-tracker"
+  title: "Crypto Tracker"
+  subtitle: "Real-Time Market Monitor"
+  description: "A sleek mobile-first web app that tracks cryptocurrency prices, historical charts, and market news feeds via live public APIs."
+  long_description: "Crypto Tracker provides interactive sparklines, portfolio tracking features, price alert triggers, and responsive layout across desktop and mobile devices."
+  category: "Web App"
+  tags: ["JavaScript", "REST API", "Chart.js", "PWA"]
+  featured: false
+  github_url: "https://github.com/EchoedDestiny428"
+  demo_url: "#"
+  icon: "trending-up"
+
+- id: "echo-cli"
+  title: "Echo CLI"
+  subtitle: "Developer Workflow Automation"
+  description: "A fast terminal utility designed to streamline multi-repository scaffolding, git workflow macros, and automated releases."
+  long_description: "Echo CLI helps developers initialize standardized projects, manage environment variables securely, and execute parallel build tasks from a single interface."
+  category: "CLI Tool"
+  tags: ["Node.js", "CLI", "Automation"]
+  featured: false
+  github_url: "https://github.com/EchoedDestiny428"
+  demo_url: "#"
+  icon: "terminal"

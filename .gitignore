@@ -1,8 +1,23 @@
+# Jekyll & Build Output
 _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+
+# Dependencies & Gems
 vendor/
 .bundle/
-Gemfile.lock
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Tool Directories
+.vscode/
+.idea/
+.gemini/
+
+# Misc
+*.log
 TODO.md

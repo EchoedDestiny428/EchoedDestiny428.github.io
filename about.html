@@ -10,31 +10,45 @@ permalink: /about
     <div>
       <h2 class="subheading">The Developer Behind the Screen</h2>
       <p class="lead">
-        I am a software engineer with a deep passion for creating beautiful, performant, and accessible digital experiences. My journey started with tweaking CSS on blog templates, and it has evolved into building scalable applications with modern web technologies.
+        {{ site.data.site_info.bio_lead }}
       </p>
-      <p class="lead" style="font-size: 1.1rem;">
-        When I'm not writing code, you can find me exploring new technologies, contributing to open source, or enjoying a good sci-fi novel.
+      <p class="lead" style="font-size: 1.05rem;">
+        {{ site.data.site_info.bio_secondary }}
       </p>
       
-      <h2 class="subheading">Technical Arsenal</h2>
-      <div class="chips">
-        <span class="chip">JavaScript (ES6+)</span>
-        <span class="chip">TypeScript</span>
-        <span class="chip">React & Next.js</span>
-        <span class="chip">Node.js</span>
-        <span class="chip">Python</span>
-        <span class="chip">SQL & NoSQL</span>
-        <span class="chip">Git</span>
-        <span class="chip">Figma</span>
+      <h2 class="subheading" style="margin-top: 2.5rem;">Technical Arsenal</h2>
+      <div class="skills-sections">
+        {% for skill_group in site.data.skills %}
+          <div class="skill-category-block">
+            <h3 class="skill-category-title">{{ skill_group.category }}</h3>
+            <div class="chips">
+              {% for item in skill_group.items %}
+                <span class="chip" data-level="{{ item.level }}">
+                  {{ item.name }}
+                  <small class="chip-level">{{ item.level }}</small>
+                </span>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
       </div>
     </div>
 
     <aside class="aside">
       <h3 class="aside-title">Quick Facts</h3>
       <ul class="list">
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg> <strong>Education:</strong> B.S. Computer Science</li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg> <strong>Experience:</strong> 3+ Years Dev</li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg> <strong>Location:</strong> Earth</li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg> 
+          <strong>Education:</strong> {{ site.data.site_info.education }}
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg> 
+          <strong>Experience:</strong> {{ site.data.site_info.experience }}
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg> 
+          <strong>Location:</strong> {{ site.data.site_info.location }}
+        </li>
       </ul>
       <div class="divider"></div>
       <a class="button button-secondary" style="width: 100%" href="{{ '/projects' | relative_url }}">View My Work</a>

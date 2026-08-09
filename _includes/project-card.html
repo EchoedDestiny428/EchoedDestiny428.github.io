@@ -1,0 +1,36 @@
+{% assign p = include.project %}
+<article class="card project-card" data-tags="{{ p.tags | join: ',' | downcase }}" data-category="{{ p.category | downcase }}">
+  <div class="card-header">
+    <div class="card-badge">{{ p.category }}</div>
+    <h3 class="card-title">{{ p.title }}</h3>
+    {% if p.subtitle %}<h4 class="card-subtitle">{{ p.subtitle }}</h4>{% endif %}
+  </div>
+
+  <p class="card-text">{{ p.description }}</p>
+
+  <div class="card-tags">
+    {% for tag in p.tags %}
+      <span class="pill">{{ tag }}</span>
+    {% endfor %}
+  </div>
+
+  <div class="card-actions">
+    <button class="button button-secondary button-sm project-modal-trigger" 
+            data-title="{{ p.title | escape }}" 
+            data-subtitle="{{ p.subtitle | escape }}" 
+            data-category="{{ p.category | escape }}"
+            data-description="{{ p.long_description | default: p.description | escape }}" 
+            data-tags="{{ p.tags | join: ', ' | escape }}" 
+            data-github="{{ p.github_url }}" 
+            data-demo="{{ p.demo_url }}">
+      Quick View
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.25rem;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+    </button>
+
+    {% if p.github_url %}
+      <a class="link" href="{{ p.github_url }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
+        GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    {% endif %}
+  </div>
+</article>

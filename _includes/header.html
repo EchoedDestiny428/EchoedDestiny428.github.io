@@ -1,0 +1,20 @@
+<header class="site-header" id="site-header">
+  <div class="nav-container">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <span class="brand-text">{{ site.data.site_info.brand_name }}</span>
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+    <nav class="nav" id="nav-menu">
+      <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a>
+      <a class="nav-link {% if page.url == '/about' or page.url == '/about.html' %}active{% endif %}" href="{{ '/about' | relative_url }}">About</a>
+      <a class="nav-link {% if page.url == '/projects' or page.url == '/projects.html' %}active{% endif %}" href="{{ '/projects' | relative_url }}">Projects</a>
+      <a class="nav-link {% if page.url == '/contact' or page.url == '/contact.html' %}active{% endif %}" href="{{ '/contact' | relative_url }}">Contact</a>
+    </nav>
+  </div>
+</header>

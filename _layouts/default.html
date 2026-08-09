@@ -1,37 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title | default: site.title }}</title>
-  {% seo %}
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {% include head.html %}
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="nav-container">
-      <a class="brand" href="{{ '/' | relative_url }}">EchoedDestiny</a>
+  <!-- Floating Background Particle Container -->
+  <div class="particles" id="particles-container"></div>
 
-      <nav class="nav">
-        <a class="nav-link" href="{{ '/' | relative_url }}">Home</a>
-        <a class="nav-link" href="{{ '/about' | relative_url }}">About</a>
-        <a class="nav-link" href="{{ '/projects' | relative_url }}">Projects</a>
-        <a class="nav-link" href="{{ '/contact' | relative_url }}">Contact</a>
-      </nav>
-    </div>
-  </header>
+  {% include header.html %}
 
-  <main class="page animate-fade-in">
+  <main class="page animate-fade-in" id="main-content">
     {{ content }}
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-container">
-      <span>© {{ 'now' | date: '%Y' }} EchoedDestiny428. All rights reserved.</span>
-      <span>Designed with passion & precision.</span>
-    </div>
-  </footer>
+  {% include footer.html %}
+
+  <!-- Quick View Project Modal -->
+  {% include project-modal.html %}
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+  </button>
+
+  <!-- JavaScript Modules -->
+  <script src="{{ '/assets/js/particles.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
 
 </body>
 </html>

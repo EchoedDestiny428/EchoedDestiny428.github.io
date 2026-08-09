@@ -6,44 +6,61 @@ permalink: /contact
 
 <section class="section animate-fade-in delay-1">
   <h1 class="page-title">Get In Touch</h1>
-  <p class="lead">I'm currently open to new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+  <p class="lead">I'm currently open to new opportunities, collaborations, and projects. Feel free to reach out!</p>
 
   <div class="two-col" style="margin-top: 3rem;">
     <div>
       <div class="form-card">
         <h2 class="subheading" style="margin-top: 0;">Send a message</h2>
-        <form class="form">
+        <form class="form" id="contact-form">
           <label class="label">
             Name
-            <input class="input" type="text" placeholder="John Doe" />
+            <input class="input" type="text" id="contact-name" placeholder="Your Name" required />
           </label>
 
           <label class="label">
             Email
-            <input class="input" type="email" placeholder="john@example.com" />
+            <input class="input" type="email" id="contact-email" placeholder="your.email@example.com" required />
           </label>
 
           <label class="label">
             Message
-            <textarea class="textarea" rows="6" placeholder="What's on your mind?"></textarea>
+            <textarea class="textarea" id="contact-message" rows="5" placeholder="What's on your mind?" required></textarea>
           </label>
 
-          <button type="button" class="button" style="margin-top: 1rem;">Send Message</button>
-          <p class="muted">Note: Form is currently a UI demonstration.</p>
+          <button type="submit" class="button" style="margin-top: 1rem;">
+            <span>Send Message</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+          <div class="form-status" id="form-status"></div>
         </form>
       </div>
     </div>
 
     <aside class="aside">
-      <h3 class="aside-title">Connect</h3>
-      <ul class="list" style="gap: 1rem; display: flex; flex-direction: column;">
-        <li><a class="link" href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> GitHub</a></li>
-        <li><a class="link" href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg> LinkedIn</a></li>
-        <li><a class="link" href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg> Twitter</a></li>
+      <h3 class="aside-title">Connect Across the Web</h3>
+      <ul class="list" style="gap: 1.2rem; display: flex; flex-direction: column;">
+        {% for social in site.data.socials %}
+          <li>
+            <a class="link social-list-link" href="{{ social.url }}" target="_blank" rel="noopener noreferrer">
+              {% if social.icon == 'github' %}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              {% elsif social.icon == 'linkedin' %}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              {% elsif social.icon == 'twitter' %}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+              {% elsif social.icon == 'mail' %}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              {% endif %}
+              <span>{{ social.name }}</span>
+              <small class="muted" style="margin-left: auto;">{{ social.handle }}</small>
+            </a>
+          </li>
+        {% endfor %}
       </ul>
       <div class="divider"></div>
-      <h3 class="aside-title">Email</h3>
-      <p class="muted" style="color: var(--text-primary); font-size: 1rem;">hello@echoeddestiny.com</p>
+      <h3 class="aside-title">Direct Email</h3>
+      <a href="mailto:{{ site.data.site_info.email }}" class="link" style="font-size: 1.05rem; word-break: break-all;">{{ site.data.site_info.email }}</a>
     </aside>
   </div>
 </section>
