@@ -221,14 +221,17 @@
         <div style="font-size: 2.2rem; margin-bottom: 10px;">🎮</div>
         <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 8px;">CLICK TO ENTER 3D WORLD</h2>
         <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
-          Controls: [W, A, S, D] Walk &bull; [Shift] Sprint &bull; [Space] Jump &bull; [Mouse] Look &bull; [ESC] Unlock
+          Controls: [W, A, S, D] Walk &bull; [Shift] Sprint &bull; [Space] Jump &bull; [C] Slide &bull; [Scroll] 3rd Person Zoom &bull; [ESC] Unlock
         </p>
         <span class="card-badge">global webRTC multiplayer connected</span>
       </div>
     </div>
 
     <!-- FPS HUD Crosshair & Overlays -->
-    <div class="fps-crosshair">+</div>
+    <div class="fps-crosshair" id="fps-crosshair">+</div>
+    <div class="fps-hit-marker" id="fps-hit-marker">
+      <svg width="32" height="32" viewBox="0 0 32 32" style="display: none; opacity: 0;"><line x1="8" y1="8" x2="14" y2="14" stroke="white" stroke-width="2"/><line x1="24" y1="8" x2="18" y2="14" stroke="white" stroke-width="2"/><line x1="8" y1="24" x2="14" y2="18" stroke="white" stroke-width="2"/><line x1="24" y1="24" x2="18" y2="18" stroke="white" stroke-width="2"/></svg>
+    </div>
 
     <div class="fps-hud-top-left">
       <div class="fps-hud-badge">
@@ -237,8 +240,102 @@
       </div>
     </div>
 
+    <!-- NEW HUD Elements for Warzone Mechanics -->
+    <div class="fps-hud-bottom-left" style="position: absolute; bottom: 30px; left: 30px; display: flex; flex-direction: column; gap: 10px; z-index: 1000; pointer-events: none;">
+      <!-- Health Bar -->
+      <div style="background: rgba(18,18,24,0.85); border: 2px solid rgba(212, 175, 55, 0.3); padding: 12px; border-radius: 8px; width: 250px; backdrop-filter: blur(8px);">
+        <div style="display: flex; justify-content: space-between; color: white; font-family: var(--font-heading); font-weight: bold; margin-bottom: 8px; font-size: 1.1rem;">
+          <span>HP</span>
+          <span id="fps-hp-text">100</span>
+        </div>
+        <div style="width: 100%; height: 12px; background: rgba(0,0,0,0.5); border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+          <div id="fps-hp-bar" style="width: 100%; height: 100%; background: linear-gradient(90deg, #d4af37, #f3e5ab); transition: width 0.2s, background 0.2s; box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);"></div>
+        </div>
+      </div>
+      <!-- Cash -->
+      <div style="background: rgba(18,18,24,0.85); border: 2px solid rgba(16, 185, 129, 0.3); padding: 12px; border-radius: 8px; color: #10b981; font-family: var(--font-heading); font-weight: bold; font-size: 1.4rem; text-shadow: 0 0 10px rgba(16, 185, 129, 0.5); backdrop-filter: blur(8px);">
+        $ <span id="fps-cash-text">0</span>
+      </div>
+    </div>
+    
+    <!-- Interaction Prompt -->
+    <div id="fps-interaction-prompt" style="position: absolute; top: 60%; left: 50%; transform: translateX(-50%); color: white; background: rgba(18,18,24,0.9); border: 1px solid #d4af37; padding: 10px 20px; border-radius: 6px; font-family: var(--font-heading); font-weight: bold; font-size: 1.2rem; display: none; z-index: 1000; pointer-events: none; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+      Press [F] to Buy Armor ($500)
+    </div>
+
+    <!-- Screen Blood Overlay -->
+    <div id="fps-blood-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; box-shadow: inset 0 0 100px 10px rgba(220, 20, 60, 0); pointer-events: none; transition: box-shadow 0.2s; z-index: 999;"></div>
+
     <div class="fps-hud-top-right">
+      <button class="reset-btn" id="open-avatar-creator-hud">🎨 Avatar</button>
       <button class="reset-btn" id="exit-3d-view-btn">Exit 3D World</button>
+    </div>
+  </div>
+
+  <!-- ROBLOX 3D AVATAR CREATOR MODAL -->
+  <div class="confirm-modal-overlay" id="avatar-creator-modal">
+    <div class="confirm-modal-box avatar-creator-container">
+      <!-- Live 3D Avatar Preview Window -->
+      <div class="avatar-preview-box">
+        <canvas id="avatar-preview-canvas"></canvas>
+        <div class="avatar-preview-hint">LIVE 3D PREVIEW</div>
+      </div>
+
+      <!-- Controls Panel -->
+      <div class="avatar-controls-panel">
+        <div>
+          <h2 style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--text-main); margin-bottom: 4px;">Roblox Avatar Creator</h2>
+          <p style="color: var(--text-muted); font-size: 0.88rem;">Customize your blocky 3D avatar & username.</p>
+        </div>
+
+        <!-- Username Input -->
+        <div class="avatar-control-group">
+          <label class="avatar-control-label" for="avatar-username-input">Player Username</label>
+          <input class="contact-field-input" id="avatar-username-input" type="text" placeholder="PLAYER_8492" maxlength="14" />
+        </div>
+
+        <!-- Part Colors -->
+        <div class="avatar-control-group">
+          <label class="avatar-control-label">Head & Arm Color</label>
+          <div class="color-swatch-grid" id="head-color-swatches">
+            <div class="color-swatch active" data-color="#d4af37" style="background: #d4af37;"></div>
+            <div class="color-swatch" data-color="#06b6d4" style="background: #06b6d4;"></div>
+            <div class="color-swatch" data-color="#f43f5e" style="background: #f43f5e;"></div>
+            <div class="color-swatch" data-color="#10b981" style="background: #10b981;"></div>
+            <div class="color-swatch" data-color="#8b5cf6" style="background: #8b5cf6;"></div>
+            <div class="color-swatch" data-color="#ffffff" style="background: #ffffff;"></div>
+          </div>
+        </div>
+
+        <div class="avatar-control-group">
+          <label class="avatar-control-label">Torso & Leg Color</label>
+          <div class="color-swatch-grid" id="torso-color-swatches">
+            <div class="color-swatch active" data-color="#181824" style="background: #181824;"></div>
+            <div class="color-swatch" data-color="#d4af37" style="background: #d4af37;"></div>
+            <div class="color-swatch" data-color="#0f172a" style="background: #0f172a;"></div>
+            <div class="color-swatch" data-color="#475569" style="background: #475569;"></div>
+            <div class="color-swatch" data-color="#8b5cf6" style="background: #8b5cf6;"></div>
+          </div>
+        </div>
+
+        <!-- Accessory Options -->
+        <div class="avatar-control-group">
+          <label class="avatar-control-label">Headgear Accessory</label>
+          <div class="accessory-btn-grid" id="accessory-picker-grid">
+            <button class="accessory-opt-btn active" data-acc="visor">Visor</button>
+            <button class="accessory-opt-btn" data-acc="headphones">Headphones</button>
+            <button class="accessory-opt-btn" data-acc="crown">Crown</button>
+            <button class="accessory-opt-btn" data-acc="halo">Halo</button>
+            <button class="accessory-opt-btn" data-acc="none">None</button>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="confirm-modal-actions" style="margin-top: 10px;">
+          <button class="confirm-btn cancel" id="avatar-modal-close-btn">Close</button>
+          <button class="confirm-btn proceed" id="avatar-modal-save-btn">Save & Play</button>
+        </div>
+      </div>
     </div>
   </div>
 

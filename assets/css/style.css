@@ -1,6 +1,6 @@
 /* ==========================================================================
    ECHOED DESTINY // MODERN WHITE, GOLD & BLACK LUXURY DESIGN SYSTEM
-   Supports Light / Dark Mode Toggle, Basic Portfolio, 3D Engine & Loading Overlay
+   Includes Avatar Creator Modal, Roblox 3D Avatars & Advanced FPS Controls
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -657,6 +657,117 @@ html, body {
 }
 
 /* ==========================================================================
+   ROBLOX 3D AVATAR CREATOR MODAL & CUSTOMIZATION UI
+   ========================================================================== */
+.avatar-creator-container {
+  max-width: 780px !important;
+  text-align: left !important;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .avatar-creator-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.avatar-preview-box {
+  width: 100%;
+  height: 320px;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.6);
+}
+
+#avatar-preview-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.avatar-preview-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: var(--gold-primary);
+  font-family: var(--font-heading);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+.avatar-controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.avatar-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.avatar-control-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+}
+
+.color-swatch-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.color-swatch:hover, .color-swatch.active {
+  transform: scale(1.15);
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+
+.accessory-btn-grid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.accessory-opt-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.accessory-opt-btn:hover, .accessory-opt-btn.active {
+  background: var(--gold-dim);
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+}
+
+/* ==========================================================================
    3D LOADING SCREEN OVERLAY
    ========================================================================== */
 .loading-screen-3d {
@@ -802,6 +913,9 @@ body.fps-locked .fps-click-trigger {
   top: 24px;
   left: 24px;
   z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .fps-hud-top-right {
@@ -809,6 +923,9 @@ body.fps-locked .fps-click-trigger {
   top: 24px;
   right: 24px;
   z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .fps-hud-badge {
@@ -853,29 +970,23 @@ body.fps-locked .fps-click-trigger {
   visibility: visible;
 }
 
-/* Terminal Question Modal Options */
-.t-q-options-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
+.fps-hit-marker {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 999;
 }
 
-.t-q-option-btn {
-  padding: 12px 18px;
-  border-radius: var(--radius-sm);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-gold);
-  color: var(--text-main);
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.2s ease;
+.fps-hit-marker svg {
+  display: block !important;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.1s ease, transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.t-q-option-btn:hover {
-  background: var(--gold-primary);
-  color: #ffffff;
-  transform: translateX(4px);
+.fps-hit-marker.active svg {
+  opacity: 1;
+  transform: scale(1);
 }
